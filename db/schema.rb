@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140324174110) do
+ActiveRecord::Schema.define(version: 20140324174426) do
 
   create_table "delayed_jobs", force: true do |t|
     t.integer  "priority",   default: 0, null: false
@@ -28,5 +28,14 @@ ActiveRecord::Schema.define(version: 20140324174110) do
   end
 
   add_index "delayed_jobs", ["priority", "run_at"], name: "delayed_jobs_priority"
+
+  create_table "snippets", force: true do |t|
+    t.string   "name"
+    t.string   "language"
+    t.text     "raw"
+    t.text     "highlighted"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
 end
