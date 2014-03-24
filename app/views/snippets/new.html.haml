@@ -1,0 +1,13 @@
+= title "New Paste"
+= form_for @snippet do |f|
+
+  = f.label :name
+  = f.text_field :name
+
+  = f.label :language
+  = f.select :language, options_for_select([["Ruby", "ruby"], ["Python", "python"], ["JavaScript", "javascript"], ["CSS", "css"]])
+
+  = f.label :raw
+  = f.text_area :raw, rows: 14, cols: 50
+  = f.submit "Paste It!"
+
