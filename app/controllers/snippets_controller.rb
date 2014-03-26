@@ -15,6 +15,15 @@ class SnippetsController < ApplicationController
     @snippet = Snippet.find params[:id]
   end
 
+  def highlighted_code
+    @snippet = Snippet.find params[:id]
+    respond_to do |format|
+      format.json do
+        render json: @snippet.as_json(only: [:highlighted])
+      end
+    end
+  end
+
 
   def edit
     @snippet = Snippet.find params[:id]

@@ -1,4 +1,8 @@
 Paste::Application.routes.draw do
+  root 'snippets#new'
+  resources :snippets do
+    get 'highlighted_code', on: :member
+  end
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
