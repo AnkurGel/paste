@@ -1,13 +1,18 @@
 = title "New Paste"
 = form_for @snippet do |f|
 
-  = f.label :name
-  = f.text_field :name
-
-  = f.label :language
-  = f.select :language, options_for_select([["Ruby", "ruby"], ["Python", "python"], ["JavaScript", "javascript"], ["CSS", "css"]])
+  .row
+    .small-4.columns
+      = f.text_field :name, placeholder: 'name this file...'
+    .small-6.columns
+      .row.collapse
+        .small-3.columns
+          %a.button.prefix{href: '#'}
+            Language
+        .small-9.columns
+          = f.select :language, options_for_select([["Ruby", "ruby"], ["Python", "python"], ["JavaScript", "javascript"], ["CSS", "css"]])
 
   = f.label :raw
   = f.text_area :raw, rows: 14, cols: 50
-  = f.submit "Paste It!"
+  = f.submit "Paste It!", class: 'button small'
 

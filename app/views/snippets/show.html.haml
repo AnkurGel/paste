@@ -1,0 +1,11 @@
+%p
+  %strong Language:
+  = @snippet.language.titleize
+.code_block
+  - if @snippet.highlighted.present?
+    = raw @snippet.highlighted
+  - else
+    .raw
+      %pre
+        = @snippet.raw
+
