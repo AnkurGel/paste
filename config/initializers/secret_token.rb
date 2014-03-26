@@ -9,4 +9,17 @@
 
 # Make sure your secret_key_base is kept private
 # if you're sharing your code publicly.
-Paste::Application.config.secret_key_base = 'b1c8b3f94f8a0f0d5a58bd7d0907595dc8f199fe941d1aee76762a1b5f5141984f558fc2af23b96d2c9e611203d6e6c6c943635902d98724597eaf33b693787d'
+require 'securerandom'
+
+def secure_token
+  file = Rails.root.join('.secret')
+  if File.exist? file
+    File.read(file).chomp
+  else
+    token = SecureRandom.hex(64)
+    File.write(file, token)
+    token
+  end
+end
+Paste::Application.config.secret_key_base = secure_token
+
