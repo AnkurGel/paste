@@ -1,14 +1,14 @@
 .row
   .header
-    .small-7.small-push-5.columns
+    .small-9.small-push-3.columns
       .auth
         -if signed_in?
           Welcome
-          = current_user.name + ", "
-          =link_to "Sign Out"
+          = link_to(current_user.name, current_user) + ","
+          =link_to "Sign Out", signout_path, class: 'signout', method: :delete
         - else
           =link_to "Sign in with GitHub", "/auth/github"
-    .small-5.small-pull-7.columns
-      %h1 Paste
+    .small-3.small-pull-9.columns
+      %h1=link_to "Paste", root_url
   %hr
 
