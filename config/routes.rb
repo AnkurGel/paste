@@ -3,6 +3,9 @@ Paste::Application.routes.draw do
   resources :snippets do
     get 'highlighted_code', on: :member
   end
+
+  get '/auth/github/callback' => 'sessions#create'
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
