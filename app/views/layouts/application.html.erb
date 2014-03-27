@@ -13,6 +13,20 @@
 
   <body>
     <%= render 'layouts/header' %>
+    <% unless flash.empty? %>
+      <div class="row">
+        <div class="small-12 small-centered columns">
+          <% flash.each do |key, value| %>
+            <% if value.is_a? String %>
+              <div data-alert class="alert-box radius <%= key.eql?(:notice) ? "success" : "warning" %>">
+                <%= content_tag :div, value %>
+                <a href="#", class="close">&times;</a>
+              </div>
+            <% end %>
+          <% end %>
+        </div>
+      </div>
+    <% end %>
 
     <div class="row">
       <div class="small-12 medium-12 large-12 columns">

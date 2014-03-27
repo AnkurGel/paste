@@ -10,9 +10,20 @@
   .auth{
     margin-top: 24px;
     text-align: right;
+    .signout {
+      border-bottom: 1px #eee dashed;
+      color: red;
+    }
   }
 }
 .footer {
   text-align: right;
   border-top: 2px #eaeaea solid;
+}
+.code_block {
+  border: solid 1px #CCC;
+  background-color: #f2f2f2;
+  pre {
+    margin: 5px 5px;
+  }
 }
