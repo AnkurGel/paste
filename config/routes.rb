@@ -1,6 +1,6 @@
 Paste::Application.routes.draw do
   root 'snippets#new'
-  resources :snippets do
+  resources :snippets, except: :show do
     get 'highlighted_code', on: :member
     get 'raw', on: :member
   end
@@ -12,6 +12,7 @@ Paste::Application.routes.draw do
   resources :users, only: [:show] do
     get 'snippets', on: :member
     get 'pastes', on: :member
+    get ':id' => 'snippets#show', as: 'snippet'
   end
 
   # The priority is based upon order of creation: first created -> highest priority.

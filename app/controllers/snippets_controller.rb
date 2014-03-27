@@ -8,7 +8,7 @@ class SnippetsController < ApplicationController
     @snippet = current_user.snippets.build(snippet_params)
     if @snippet.save
       @snippet.delay.pygmentation
-      redirect_to @snippet, notice: 'New paste created successfully!'
+      redirect_to user_snippet_path(current_user, @snippet), notice: 'New paste created successfully!'
     end
   end
   

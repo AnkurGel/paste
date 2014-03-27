@@ -20,6 +20,12 @@
   text-align: right;
   border-top: 2px #eaeaea solid;
 }
+.snippet-details {
+  .show-for-large-up {
+    color: forestgreen;
+    font-weight: bolder;
+  }
+}
 .code_block {
   border: solid 1px #CCC;
   background-color: #f2f2f2;
