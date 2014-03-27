@@ -1,6 +1,10 @@
-%p
-  %strong Language:
-  = @snippet.language.titleize
+.row
+  .small-6.columns
+    %strong Language:
+    = @snippet.language.titleize
+  .small-6.columns
+    = link_to "Raw", raw_snippet_path(@snippet), class: 'label radius right'
+%br
 .code_block
   - if @snippet.highlighted.present?
     = raw @snippet.highlighted
@@ -8,4 +12,8 @@
     .raw
       %pre
         = @snippet.raw
+%br
+.row
+  .small-6.columns
+    = link_to "Create New", root_url, class: 'tiny button'
 

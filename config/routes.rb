@@ -2,6 +2,7 @@ Paste::Application.routes.draw do
   root 'snippets#new'
   resources :snippets do
     get 'highlighted_code', on: :member
+    get 'raw', on: :member
   end
 
   get '/auth/github/callback' => 'sessions#create'
