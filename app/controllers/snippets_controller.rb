@@ -13,7 +13,7 @@ class SnippetsController < ApplicationController
   end
   
   def show
-    @snippet = Snippet.find params[:id]
+    @snippet = Snippet.friendly.find params[:id]
     store_current_location
     respond_to do |format|
       format.html
@@ -22,7 +22,7 @@ class SnippetsController < ApplicationController
   end
 
   def highlighted_code
-    @snippet = Snippet.find params[:id]
+    @snippet = Snippet.friendly.find params[:id]
     respond_to do |format|
       format.json do
         render json: @snippet.as_json(only: [:highlighted])
@@ -31,7 +31,7 @@ class SnippetsController < ApplicationController
   end
 
   def raw
-    @snippet = Snippet.find params[:id]
+    @snippet = Snippet.friendly.find params[:id]
     respond_to do |format|
       format.text  { render text: @snippet.raw }
       format.html { redirect_to(raw_snippet_path(@snippet, format: :txt)) }
@@ -39,11 +39,11 @@ class SnippetsController < ApplicationController
   end
 
   def edit
-    @snippet = Snippet.find params[:id]
+    @snippet = Snippet.friendly.find params[:id]
   end
 
   def update
-    @snippet = Snippet.find params[:id]
+    @snippet = Snippet.friendly.find params[:id]
 
   end
 
