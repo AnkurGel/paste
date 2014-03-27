@@ -5,11 +5,14 @@ class Snippet < ActiveRecord::Base
   default_scope -> { order("created_at DESC") }
 
   belongs_to :user
+  belongs_to :language
   after_create :generate_base36
+
+  validates :raw, presence: true, length: { minimum: 10 }
 
   def pygmentation
     uri = URI.parse('http://pygments.appspot.com/')
-    request = Net::HTTP.post_form(uri, { lang: language, code: raw })
+    request = Net::HTTP.post_form(uri, { lang: language.name.downcase, code: raw })
     update_attribute(:highlighted, request.body)
   end
 

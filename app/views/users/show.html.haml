@@ -18,7 +18,7 @@
             %tr
               %td.text-center= link_to snippet.slug, user_snippet_path(@user, snippet)
               %td= link_to truncate(snippet.raw), user_snippet_path(@user, snippet)
-              %td= snippet.language.capitalize
+              %td= snippet.language.name
               %td= time_ago_in_words snippet.created_at
       - else
         No pastes by the user yet.

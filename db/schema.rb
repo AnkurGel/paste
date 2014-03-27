@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140327154107) do
+ActiveRecord::Schema.define(version: 20140327204657) do
 
   create_table "delayed_jobs", force: true do |t|
     t.integer  "priority",   default: 0, null: false
@@ -29,15 +29,22 @@ ActiveRecord::Schema.define(version: 20140327154107) do
 
   add_index "delayed_jobs", ["priority", "run_at"], name: "delayed_jobs_priority"
 
+  create_table "languages", force: true do |t|
+    t.string   "extension"
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "snippets", force: true do |t|
     t.string   "name"
-    t.string   "language"
     t.text     "raw"
     t.text     "highlighted"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "user_id"
     t.string   "slug"
+    t.integer  "language_id"
   end
 
   add_index "snippets", ["slug"], name: "index_snippets_on_slug"
