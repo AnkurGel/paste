@@ -7,6 +7,8 @@ Paste::Application.routes.draw do
 
   get '/auth/github/callback' => 'sessions#create'
   match '/signout' => 'sessions#destroy', via: :delete
+  resources :sessions, only: [:new]
+
   resources :users, only: [:show] do
     get 'snippets', on: :member
     get 'pastes', on: :member

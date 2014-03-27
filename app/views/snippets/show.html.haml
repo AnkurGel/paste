@@ -16,4 +16,8 @@
 .row
   .small-6.columns
     = link_to "Create New", root_url, class: 'tiny button'
+    - if signed_in?
+      = link_to "Gist It", '#', class: 'tiny alert button'
+    - else
+      = link_to "Gist It", new_session_path, class: 'tiny alert button'
 
