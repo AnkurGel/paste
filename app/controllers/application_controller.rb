@@ -5,11 +5,17 @@ class ApplicationController < ActionController::Base
 
   private
   def current_user
-    @current_user ||= User.find(session[:user_id]) if session[:user_id]
+    if session[:user_id]
+      @current_user ||= User.find(session[:user_id]) if session[:user_id]
+    else
+      anonymous_user =  User.find_by(username: 'anonymous', provider: 'system')
+      session[:guest_id] = anonymous_user.try(:id)
+      @current_user ||= anonymous_user if session[:guest_id]
+    end
   end
 
   def signed_in?
-    !current_user.nil?
+    !current_user.nil? and !session[:user_id].nil?
   end
 
   def store_current_location
