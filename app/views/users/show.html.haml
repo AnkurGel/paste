@@ -1,8 +1,24 @@
 %h3
-  = @user.name
-  %table
-    - @snippets.each do |snippet|
-      %tr
-        %td= link_to snippet.id, snippet
-        %td= snippet.language.capitalize
-        %td= time_ago_in_words snippet.created_at
+  .row
+    .small-12.medium-10.large-8.small-centered.columns
+      = @user.name
+      %span.has-tip.tip-right.open{'data-tooltip' => '', title: 'Visit Github profile!'}
+        = link_to((image_tag 'github.png'), "http://github.com/#{@user.username}", target: :blank)
+  .row
+    .small-12.medium-10.large-8.small-centered.columns
+      - if @snippets.present?
+        %table
+          %thead
+            %tr
+              %th.text-center{ width: '120' }Paste
+              %th{ width: '300' } Preview
+              %th Language
+              %th Created at
+          - @snippets.each do |snippet|
+            %tr
+              %td.text-center= link_to snippet.slug, user_snippet_path(@user, snippet)
+              %td= link_to truncate(snippet.raw), user_snippet_path(@user, snippet)
+              %td= snippet.language.capitalize
+              %td= time_ago_in_words snippet.created_at
+      - else
+        No pastes by the user yet.
