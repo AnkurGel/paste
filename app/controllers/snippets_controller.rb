@@ -1,6 +1,7 @@
 class SnippetsController < ApplicationController
   def new
-    @snippet = Snippet.new
+    store_current_location
+    @snippet = signed_in? ? current_user.snippets.build : Snippet.new
   end
 
   def create
