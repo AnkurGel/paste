@@ -1,0 +1,16 @@
+.row.snippet-details
+  .small-6.columns
+    %span
+      %span.show-for-large-up Name:
+      %span.name= snippet.slug
+    |
+    %span
+      %span.show-for-large-up Language:
+      %span= snippet.language.titleize
+    |
+    %span
+      %span.show-for-large-up Author:
+      %span= snippet.user.username
+  .small-6.columns
+    = link_to "Raw", raw_snippet_path(snippet), class: 'label radius right'
+%br

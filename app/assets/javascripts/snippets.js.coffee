@@ -10,7 +10,7 @@ jQuery ->
       interval = setInterval ->
         request = $.ajax
           type: 'get'
-          url: window.location.pathname + "/highlighted_code"
+          url: '/snippets/' + $("span.name").text() + "/highlighted_code"
           dataType: 'json'
           success: (data)->
             if data.highlighted?
@@ -25,7 +25,7 @@ jQuery ->
       setTimeout ->
         $.ajax
           type: 'get'
-          url: window.location.pathname + "/highlighted_code"
+          url: '/snippets/' + $("span.name").text() + "/highlighted_code"
           dataType: 'json'
           success: (data) ->
             if data.highlighted?
