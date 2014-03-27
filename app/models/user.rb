@@ -4,6 +4,7 @@ class User < ActiveRecord::Base
   before_save { self.username = username.downcase }
 
   has_many :snippets, dependent: :destroy
+  validates :username, presence: true, uniqueness: { scope: :provider }
 
   def self.from_github(auth)
     where(auth.slice(:provider, :uid)).first_or_initialize.tap do |user|

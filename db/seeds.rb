@@ -6,3 +6,16 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 User.create(username: 'anonymous', name: 'anonymous', provider: 'system')
+[['rb', 'Ruby'],
+ ['py', 'Python'],
+ ['js', 'Javascript'],
+ ['coffee', 'CoffeeScript'],
+ ['', 'Plain'],
+ ['md', 'Markdown'],
+ ['css', 'CSS'],
+ ['cpp', 'C++'],
+ ['c', 'C'],
+ ['java', 'Java'],
+].each do |ext, name|
+   Language.create(extension: ext, name: name)
+ end
