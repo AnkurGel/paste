@@ -6,6 +6,10 @@ Paste::Application.routes.draw do
 
   get '/auth/github/callback' => 'sessions#create'
   match '/signout' => 'sessions#destroy', via: :delete
+  resources :users, only: [:show] do
+    get 'snippets', on: :member
+    get 'pastes', on: :member
+  end
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

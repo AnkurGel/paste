@@ -1,0 +1,8 @@
+%h3
+  = @user.name
+  %table
+    - @snippets.each do |snippet|
+      %tr
+        %td= link_to snippet.id, snippet
+        %td= snippet.language.capitalize
+        %td= time_ago_in_words snippet.created_at
