@@ -1,4 +1,8 @@
 class User < ActiveRecord::Base
+  before_save { self.username = username.downcase }
+
+  has_many :snippets, dependent: :destroy
+
   def self.from_github(auth)
     where(auth.slice(:provider, :uid)).first_or_initialize.tap do |user|
       user.name = auth.info.name
@@ -7,4 +11,12 @@ class User < ActiveRecord::Base
       user.save!
     end
   end
+
+  def pastes
+    snippets
+  end
+
+  def gists
+  end
+
 end
