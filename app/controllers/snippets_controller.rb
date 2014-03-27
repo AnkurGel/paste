@@ -4,15 +4,20 @@ class SnippetsController < ApplicationController
   end
 
   def create
-    @snippet = Snippet.new(snippet_params)
+    @snippet = current_user.snippets.build(snippet_params)
     if @snippet.save
       @snippet.delay.pygmentation
-      redirect_to @snippet
+      redirect_to @snippet, notice: 'New paste created successfully!'
     end
   end
   
   def show
     @snippet = Snippet.find params[:id]
+    store_current_location
+    respond_to do |format|
+      format.html
+      format.text { render text: @snippet.raw }
+    end
   end
 
   def highlighted_code
@@ -24,6 +29,13 @@ class SnippetsController < ApplicationController
     end
   end
 
+  def raw
+    @snippet = Snippet.find params[:id]
+    respond_to do |format|
+      format.text  { render text: @snippet.raw }
+      format.html { redirect_to(raw_snippet_path(@snippet, format: :txt)) }
+    end
+  end
 
   def edit
     @snippet = Snippet.find params[:id]
@@ -33,6 +45,7 @@ class SnippetsController < ApplicationController
     @snippet = Snippet.find params[:id]
 
   end
+
 
   private
   def snippet_params
