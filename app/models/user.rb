@@ -1,4 +1,6 @@
 class User < ActiveRecord::Base
+  extend FriendlyId
+
   before_save { self.username = username.downcase }
 
   has_many :snippets, dependent: :destroy
@@ -19,4 +21,5 @@ class User < ActiveRecord::Base
   def gists
   end
 
+  friendly_id :username
 end

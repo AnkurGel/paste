@@ -25,6 +25,8 @@ group :test do
   gem 'capybara', '2.1.0'
 end
 
+gem 'friendly_id'
+
 gem 'sass-rails', '4.0.1'
 #gem 'sass-rails', '~> 4.0.2'
 gem 'sprockets', '2.11.0'
