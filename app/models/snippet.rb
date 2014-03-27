@@ -2,6 +2,8 @@ require 'net/http'
 class Snippet < ActiveRecord::Base
   extend FriendlyId
 
+  default_scope -> { order("created_at DESC") }
+
   belongs_to :user
   after_create :generate_base36
 
