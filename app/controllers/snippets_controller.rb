@@ -8,7 +8,7 @@ class SnippetsController < ApplicationController
     @snippet = current_user.snippets.build(snippet_params)
     if @snippet.save
       @snippet.delay.pygmentation
-      redirect_to user_snippet(current_user, snippet), notice: 'New paste created successfully!'
+      redirect_to user_snippet_path(current_user, @snippet), notice: 'New paste created successfully!'
     end
   end
   
@@ -50,7 +50,7 @@ class SnippetsController < ApplicationController
 
   private
   def snippet_params
-    params.require(:snippet).permit(:name, :language, :raw)
+    params.require(:snippet).permit(:name, :language_id, :raw)
   end
 
 
