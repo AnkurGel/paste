@@ -12,7 +12,6 @@
         .small-7.medium-8.large-8.columns
           = f.collection_select :language_id, Language.all, :id, :name
 
-  = f.label :raw
-  = f.text_area :raw, rows: 14, cols: 50
+  = f.text_area :raw, rows: 14, cols: 50, placeholder: "Your paste goes here..."
   = f.submit "Paste It!", class: 'button small'
 

@@ -31,3 +31,30 @@ jQuery ->
             if data.highlighted?
               $(".code_block").html(data.highlighted)
       , 250
+  # Select the language dynamically by inferring from file extension
+  # JS #FTW
+  $(document).ready ->
+    lang = {}
+    if($("#snippet_name").size() > 0)
+      # Send a GET request to acquire the map b/w extensions and ids
+      $.ajax
+        type: 'get'
+        url: '/snippets/get_languages'
+        dataType: 'json'
+        success: (data) ->
+          lang = data
+
+      $("#snippet_name").on "input", (event) ->
+        # on input, capture the value
+        val = $("#snippet_name").val()
+
+        # infer the extension and filename
+        [filename, extension] = val.split(".")
+
+        #from the lang(uage) object, check if that language is present, else plain
+        if extension?
+          selected_language = lang[extension] || lang['']
+        else if filename?
+          selected_language = lang['']
+        # update the selected option
+        $("#snippet_language_id").val(selected_language) if selected_language?

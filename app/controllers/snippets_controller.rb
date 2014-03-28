@@ -38,6 +38,13 @@ class SnippetsController < ApplicationController
     end
   end
 
+  def get_languages
+    @languages_data = Language.extensions_map
+    respond_to do |format|
+      format.json { render json: @languages_data.as_json }
+    end
+  end
+
   def edit
     @snippet = Snippet.friendly.find params[:id]
   end
