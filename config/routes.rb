@@ -3,6 +3,7 @@ Paste::Application.routes.draw do
   resources :snippets, except: :show do
     get 'highlighted_code', on: :member
     get 'raw', on: :member
+    get 'get_languages', on: :collection
   end
 
   get '/auth/github/callback' => 'sessions#create'
