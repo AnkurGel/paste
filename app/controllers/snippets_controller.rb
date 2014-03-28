@@ -4,6 +4,12 @@ class SnippetsController < ApplicationController
     @snippet = signed_in? ? current_user.snippets.build : Snippet.new
   end
 
+  def fork
+    old_snippet = Snippet.friendly.find params[:id]
+    @snippet = old_snippet.try(:fork) || Snippet.new
+    render 'new'
+  end
+
   def create
     @snippet = current_user.snippets.build(snippet_params)
     if @snippet.save
@@ -11,7 +17,7 @@ class SnippetsController < ApplicationController
       redirect_to user_snippet_path(current_user, @snippet), notice: 'New paste created successfully!'
     end
   end
-  
+
   def show
     @snippet = Snippet.friendly.find params[:id]
     store_current_location

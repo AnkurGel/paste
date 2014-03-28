@@ -17,8 +17,12 @@ class Snippet < ActiveRecord::Base
   end
 
   friendly_id :slug
+
+  alias :fork :dup
+
   private
   def generate_base36
     update_attributes(slug: (1000+id).to_s(2).to_i.to_s(36))
   end
+
 end

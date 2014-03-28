@@ -12,5 +12,8 @@
       %span.show-for-large-up Author:
       %span= snippet.user.username
   .small-6.columns
-    = link_to "Raw", raw_snippet_path(snippet), class: 'label radius right'
+    .right
+      - if current_user and current_user != snippet.user
+        = link_to "Fork", fork_snippet_path(snippet), class: 'label radius alert'
+      = link_to "Raw", raw_snippet_path(snippet), class: 'label radius'
 %br
